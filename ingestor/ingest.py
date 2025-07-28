@@ -75,6 +75,3 @@ def ingest(s3_client, engine):
             save_df_to_postgres(engine, df);
         else:
             print(f"File already ingested: {file}")
-
-
-

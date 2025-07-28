@@ -8,22 +8,22 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - uspowerplant_pgdata:/var/lib/postgresql/data
 #      - ./ingestor/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
 
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    ports:
-      - "8081:80"
-    depends_on:
-      - postgres
-    networks:
-      - app-network
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+#    ports:
+#      - "8081:80"
+#    depends_on:
+#      - postgres
+#    networks:
+#      - app-network
 
   ingestor:
     build:
@@ -35,33 +35,34 @@ services:
     networks:
       - app-network
 
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile.backend
-    environment:
-      - DATABASE_URL=postgresql://aiq:aiq@postgres:5432/powerplantsdb
-    depends_on:
-      - postgres
-    ports:
-      - "8000:8000"
-    networks:
-      - app-network
-
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
-    networks:
-      - app-network
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.backend
+#    environment:
+#      - DATABASE_URL=postgresql://aiq:aiq@postgres:5432/powerplantsdb
+#    depends_on:
+#      - postgres
+#    ports:
+#      - "8000:8000"
+#    networks:
+#      - app-network
+#
+#  frontend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.frontend
+#    ports:
+#      - "3000:80"
+#    depends_on:
+#      - backend
+#    networks:2
+#      - app-network
 
 volumes:
-  pgdata:
+  uspowerplant_pgdata:
 
 networks:
   app-network:
+    name: uspowerplant_app-network
     driver: bridge
