@@ -10,27 +10,21 @@ services:
     volumes:
       - uspowerplant_pgdata:/var/lib/postgresql/data
 #      - ./ingestor/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U aiq -d powergen" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - app-network
-
-#  pgadmin:
-#    image: dpage/pgadmin4
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-#    ports:
-#      - "8081:80"
-#    depends_on:
-#      - postgres
-#    networks:
-#      - app-network
 
   ingestor:
     build:
       context: .
       dockerfile: Dockerfile.ingestor
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     restart: "no"
     networks:
       - app-network
@@ -59,8 +53,21 @@ services:
 #    networks:2
 #      - app-network
 
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+#    ports:
+#      - "8081:80"
+#    depends_on:
+#      - postgres
+#    networks:
+#      - app-network
+
 volumes:
   uspowerplant_pgdata:
+    name: uspowerplant_pgdata
 
 networks:
   app-network:

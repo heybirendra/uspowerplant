@@ -27,6 +27,6 @@ def init(engine) :
     ensure_default_file_exist(s3client, S3_BUCKET, DEFAULT_FILE_NAME,DEFAULT_FILE_PATH)
 
 if __name__ == "__main__":
-    engine = create_engine(os.geenv("DB_CON_URL"))
+    engine = create_engine(os.getenv("DB_CON_URL"))
     init(engine)
     ingest(s3client, engine)
