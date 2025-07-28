@@ -29,12 +29,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ingestor
-    #    environment:
-    #      AWS_ACCESS_KEY_ID: your-access-key
-    #      AWS_SECRET_ACCESS_KEY: your-secret-key
-    #      BUCKET_NAME: egrid-csv-bucket
-    #      OBJECT_KEY: gen23.csv
-    #      DATABASE_URL: postgresql://aiq:aiq@postgres:5432/powerplantsdb
     depends_on:
       - postgres
     restart: "no"
