@@ -10,8 +10,8 @@ from orm.PowerPlant import Base
 #
 # db_url = f"postgresql://{user}:{password}@{host}:{port}/{db}"
 
-def save_df_to_postgres(df, table_name="powerplant"):
-    engine = create_engine("postgresql://aiq:aiq@postgres:5432/powergen")
+def save_df_to_postgres(engine, df, table_name="powerplant"):
+    # engine = create_engine("postgresql://aiq:aiq@postgres:5432/powergen")
     Base.metadata.create_all(engine)
     df.to_sql(table_name, con=engine, if_exists='append', index=False)
 

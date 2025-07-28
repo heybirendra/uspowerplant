@@ -1,0 +1,3 @@
+Generator file sequence number,Data Year,Plant state abbreviation,Plant name,DOE/EIA ORIS plant or facility code,Generator ID,Number of associated boilers,Generator status,Generator prime mover type,Generator primary fuel,Generator nameplate capacity (MW),Generator capacity factor,Generator annual net generation (MWh),Generator ozone season net generation (MWh),Generation data source,Generator year on-line,Generator planned or actual retirement year
+SEQGEN23,YEAR,PSTATEABB,PNAME,ORISPL,GENID,NUMBLR,GENSTAT,PRMVR,FUELG1,NAMEPCAP,CFACT,GENNTAN,GENNTOZ,GENERSRC,GENYRONL,GENYRRET
+1,2023,DL,Alakanuk,57053,UNIT4,,SB,IC,DFO,0.8,0,0,0,Distributed from EIA-923 Generation and Fuel,2013,

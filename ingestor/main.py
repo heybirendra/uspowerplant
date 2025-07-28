@@ -1,7 +1,10 @@
 # --- Run All ---
+from sqlalchemy import create_engine
+
 from upload import *
 from ingest import *
 from config import *
+from ddl.ddl import *
 import boto3
 
 session = boto3.Session(
@@ -14,7 +17,15 @@ session = boto3.Session(
 s3_client = session.client("s3")
 s3_resource = session.resource("s3")  # Now you can call .Bucket()
 
+def init(engine) :
+    ensure_tables_exist(engine)
+    print("bucketname : ",S3_BUCKET)
+    ensure_bucket_exists(s3_resource, S3_BUCKET)
+    ensure_default_file_exist(s3_client, S3_BUCKET, DEFAULT_FILE_NAME,
+                              DEFAULT_FILE_PATH)
+
 if __name__ == "__main__":
-    ensure_bucket_exists(s3_resource, S3_CONFIG['bucket'])
-    upload_file_if_not_exists(s3_client, S3_CONFIG['bucket'], S3_CONFIG['key'], file_config['filepath'])
-    ingest_data(s3_client)
+    print("aws region from env:", AWS_DEFAULT_REGION)
+    engine = create_engine("postgresql://aiq:aiq@postgres:5432/powergen")
+    init(engine)
+    ingest(s3_client, engine)

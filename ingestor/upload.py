@@ -1,5 +1,5 @@
 import botocore
-from config import aws_config
+from config import AWS_DEFAULT_REGION
 
 def ensure_bucket_exists(s3_resource, bucket_name):
     bucket = s3_resource.Bucket(bucket_name)
@@ -9,11 +9,11 @@ def ensure_bucket_exists(s3_resource, bucket_name):
         print(f"Creating bucket '{bucket_name}'...")
         s3_resource.create_bucket(
             Bucket=bucket_name,
-            CreateBucketConfiguration={'LocationConstraint': aws_config['region']},
+            CreateBucketConfiguration={'LocationConstraint': AWS_DEFAULT_REGION},
         )
         print("Bucket created.")
 
-def upload_file_if_not_exists(s3_client, bucket, key, file_path):
+def ensure_default_file_exist(s3_client, bucket, key, file_path):
     try:
         s3_client.head_object(Bucket=bucket, Key=key)
         print(f"'{key}' already exists in '{bucket}'. Skipping upload.")
