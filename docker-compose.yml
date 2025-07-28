@@ -35,29 +35,29 @@ services:
     networks:
       - app-network
 
-#  backend:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.backend
-#    environment:
-#      - DATABASE_URL=postgresql://aiq:aiq@postgres:5432/powerplantsdb
-#    depends_on:
-#      - postgres
-#    ports:
-#      - "8000:8000"
-#    networks:
-#      - app-network
-#
-#  frontend:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.frontend
-#    ports:
-#      - "3000:80"
-#    depends_on:
-#      - backend
-#    networks:
-#      - app-network
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      - DATABASE_URL=postgresql://aiq:aiq@postgres:5432/powerplantsdb
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
 
 volumes:
   pgdata:
