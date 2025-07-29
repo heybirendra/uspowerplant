@@ -23,7 +23,7 @@ A cloud-ready, Dockerized, full-stack application to ingest, transform, store, a
 * **Backend API**: FastAPI-based service to query the database
 * **Frontend**: React app that visualizes top N power plants by state
 * **Database**: PostgreSQL
-* **Storage**: Object Storage (MinIO or S3)
+* **Storage**: Object Storage (S3)
 
 ### 🔹 Deployment View
 
@@ -51,9 +51,10 @@ User --> Frontend (React)
 
 * Docker + Docker Compose
 * Git
-* S3 Bucket
-  + Bucket Created + File Uploaded with GEN23.csv schema file. NOTE, if no bucket found, ingestor will create it and put the file in it so that it can read it.
-  + This file is in the ingestor and was extracted from the parent excel file GEN23 sheet, which was downloaded from the given link, and was used for development.
+* .env file: Need to update this, with correct details like AWS & db credits.
+* S3 Bucket : 
+  + Bucket Created + File Uploaded with GEN23.csv schema file. NOTE, if no bucket found, ingestor on run, will create it and put the file in it so that S3 resource is ready to read the file.
+  + This file is in the ingestor module, and was extracted from the parent excel file GEN23 sheet, which was downloaded from the assignment given link, and was used for the development.
 
 ### Clone the Repository
 
@@ -67,10 +68,9 @@ cd uspowerplant
 Copy and update `.env.example`:
 
 ```bash
-cp .env.example .env
+cp .env.example .env : To create the .env file. Once create update the file with the values.
 ```
-
-Ensure your credentials and DB values are correct. Ensure AWS credential user has accessible roles and policies with respect to AWS S3 Service.
+Please, ensure your AWS credentials and DB values are correct. Ensure AWS credential user has accessible roles and policies with respect to AWS S3 Service.
 
 ### Run All Services
 
@@ -78,7 +78,7 @@ Ensure your credentials and DB values are correct. Ensure AWS credential user ha
 docker-compose up --build
 ```
 
-Access:
+Access: Once all services are up, use the below URLs. If using the dockerized pgAdmin, host = postgres. If pgAdmin running on local machine, host = localhost
 
 * Frontend: [http://localhost:3000](http://localhost:3000)
 * Backend API: [http://localhost:8000/docs](http://localhost:8000/docs)
@@ -91,11 +91,10 @@ Access:
 FastAPI automatically generates documentation:
 
 * Swagger UI: `/docs`
-* Redoc: `/redoc`
 
 Main Endpoints:
 
-* `GET /powerplants/top?state=CA&limit=10` : Main API.
+* `GET /powerplants/top?state=CA&limit=10` : Main API to get the data filtered by state and limited in number.
 * `GET /powerplants/top?limit=20` : Populating the list of states dynamically from the data in table
 
 ---
