@@ -9,6 +9,7 @@ def create_powerplan_table(engine):
         plant_name TEXT not null,
         genid TEXT not null,
         net_generation_mwh FLOAT not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         unique (state, plant_id, genid)
         );
         """

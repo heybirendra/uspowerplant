@@ -33,7 +33,7 @@ export default function PowerPlantViewer() {
 
   return (
     <div style={{ maxWidth: 800, margin: 'auto', padding: 20 }}>
-      <h2>Power Plant Viewer</h2>
+      <h2>USPowerPlant: Annual Net Generation Visualizer</h2>
 
       <div style={{ marginBottom: 20 }}>
         <label>

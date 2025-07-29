@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 import boto3
-
+# this file can be executed to TEST if the s3 client able to access buckets
 load_dotenv()
 
 s3 = boto3.client(
@@ -11,8 +11,8 @@ s3 = boto3.client(
     region_name=os.getenv("AWS_DEFAULT_REGION"),
 )
 
-print("AWS_ACCESS_KEY_ID:", os.getenv("AWS_ACCESS_KEY_ID"))
-print("AWS_DEFAULT_REGION:", os.getenv("AWS_DEFAULT_REGION"))
+# print("AWS_ACCESS_KEY_ID:", os.getenv("AWS_ACCESS_KEY_ID"))
+# print("AWS_DEFAULT_REGION:", os.getenv("AWS_DEFAULT_REGION"))
 
 buckets = s3.list_buckets()
-print("Buckets:", [b['Name'] for b in buckets['Buckets']])
+print("Testing Buckets List Operations:", [b['Name'] for b in buckets['Buckets']])

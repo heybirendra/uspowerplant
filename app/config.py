@@ -14,5 +14,5 @@ DATABASE_URL = (
     f"@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 )
 
-print("dbURL" , DATABASE_URL);
+# print("dbURL" , DATABASE_URL);
 

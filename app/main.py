@@ -3,7 +3,6 @@ from app.api import router as api_router
 from app.pretty.PrettyJson import PrettyJson
 from fastapi.middleware.cors import CORSMiddleware
 
-
 app = FastAPI(default_response_class=PrettyJson)
 
 app.add_middleware(
