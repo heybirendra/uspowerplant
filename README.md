@@ -35,6 +35,9 @@ User --> Frontend (React)
          v
      Object Storage (S3) --> Ingestor
 ```
+### 🔹 High Level Architecture Diagram
+
+<img width="6854" height="2907" alt="image" src="https://github.com/user-attachments/assets/e791b1fc-e769-4a76-b7f3-507a8d1d3038" />
 
 ### 🔹 Infrastructure
 
