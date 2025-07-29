@@ -51,7 +51,9 @@ User --> Frontend (React)
 
 * Docker + Docker Compose
 * Git
-* S3 Bucket + File Uploaded with GEN23.csv schema file. This file was extracted from the parent excel file which was downloaded
+* S3 Bucket
+  + Bucket Created + File Uploaded with GEN23.csv schema file. NOTE, if no bucket found, ingestor will create it and put the file in it so that it can read it.
+  + This file is in the ingestor and was extracted from the parent excel file GEN23 sheet, which was downloaded from the given link, and was used for development.
 
 ### Clone the Repository
 
@@ -68,7 +70,7 @@ Copy and update `.env.example`:
 cp .env.example .env
 ```
 
-Ensure your credentials and DB values are correct.
+Ensure your credentials and DB values are correct. Ensure AWS credential user has accessible roles and policies with respect to AWS S3 Service.
 
 ### Run All Services
 
@@ -80,7 +82,7 @@ Access:
 
 * Frontend: [http://localhost:3000](http://localhost:3000)
 * Backend API: [http://localhost:8000/docs](http://localhost:8000/docs)
-* pgAdmin (if enabled): [http://localhost:8081](http://localhost:8081)
+* pgAdmin (if enabled): [http://localhost:8081](http://localhost:8081) : This is a service defined in the docker-compose file and in disabled state. I used this to verify the ingested data.
 
 ---
 
@@ -102,13 +104,14 @@ Main Endpoints:
 
 * Select U.S. State
 * Choose number of top plants
-* View table/chart of results
+* View table of results
+* Visualization Chart can be added as well (coming soon)
 
 ---
 
 ## ⚙️ Docker & Volumes
 
-Clean everything: This script can be used to cleanslate the environment by cleaning all unused containers, images and volumes
+Clean everything: This script can be used to cleanslate the environment by cleaning all unused containers, images and volumes and was helpful while testing.
 
 ```bash
 ./clean_uspowerplant.sh
