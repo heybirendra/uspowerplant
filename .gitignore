@@ -12,5 +12,3 @@ node_modules/
 # OS
 .DS_Store
 Thumbs.db
-
-clean_uspowerplant.sh
