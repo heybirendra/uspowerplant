@@ -176,14 +176,15 @@ USPowerPlant/
 
 ## ✅ Tech Stack
 
-| Layer       | Technology     |
-| ----------- | -------------- |
-| UI          | React          |
-| API         | FastAPI        |
-| DB          | PostgreSQL     |
-| Storage     | S3             |
-| Container   | Docker Compose |
-| Infra (Opt) | Terraform (Pending)     |
+| Layer       | Technology     | Justification                                          |
+| ----------- | -------------- | ---------------------------------------------------- |
+| UI          | React          | Popular, component-based, fast rendering, large community support. Have some previous knowledge | Could have used Streamlist provided the time
+| API         | FastAPI        | Conidering the data ingestion project, Python was the choie for data transformation, thefore thouugh to keep the same tech for api as well. High-performance Python framework, easy to build RESTful APIs with async support. Plus consideration of existing usage in Org  |
+| DB          | PostgreSQL     | Reliable, scalable relational DB with strong SQL support and extensibility. Good for fixed schmea data solution storage and reads |
+| Storage     | S3             | Industry standard object storage. Part of AWS ecosystem. Fairly aware of this.
+| Container   | Docker Compose | Simplifies multi-container orchestration locally and in production | Easy to test and run on any system without any critical configuraiton needs.
+
+
 
 ---
 
