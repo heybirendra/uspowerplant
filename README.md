@@ -68,9 +68,9 @@ cd uspowerplant
 Copy and update `.env.example`:
 
 ```bash
-cp .env.example .env : To create the .env file. Once create update the file with the values.
+cp .env.example .env : 
 ```
-Please, ensure your AWS credentials and DB values are correct. Ensure AWS credential user has accessible roles and policies with respect to AWS S3 Service.
+Above, to create the .env file at the project root based upon the sample file .env.example. Once created, update the file with the required values. Please, ensure your AWS given credentials and DB values are correct. Please also ensure AWS credential user has accessible roles and policies with respect to AWS S3 Service.
 
 ### Run All Services
 
@@ -78,11 +78,14 @@ Please, ensure your AWS credentials and DB values are correct. Ensure AWS creden
 docker-compose up --build
 ```
 
-Access: Once all services are up, use the below URLs. If using the dockerized pgAdmin, host = postgres. If pgAdmin running on local machine, host = localhost
+Access: Once all services are up, use the below URLs. 
 
 * Frontend: [http://localhost:3000](http://localhost:3000)
 * Backend API: [http://localhost:8000/docs](http://localhost:8000/docs)
 * pgAdmin (if enabled): [http://localhost:8081](http://localhost:8081) : This is a service defined in the docker-compose file and in disabled state. I used this to verify the ingested data.
+* Optional : You may use pgAdmin to see the data and tables. 
+         pgAdmin on Docker : You can enable the commented service "pgadmin" in docker-compose.yml file if wanna use the dockerized pgAdmin. In this case, host = postgres (docker service), need to be given. 
+         pgAdmin on Local : If pgAdmin running on local machine, then while registering the server, please provide host = localhost
 
 ---
 
@@ -94,8 +97,8 @@ FastAPI automatically generates documentation:
 
 Main Endpoints:
 
-* `GET /powerplants/top?state=CA&limit=10` : Main API to get the data filtered by state and limited in number.
-* `GET /powerplants/top?limit=20` : Populating the list of states dynamically from the data in table
+* `GET /pp/powerplants?limit=10&state=CA` : Main API to get the data filtered by state and limited in number.
+* `GET /pp/states` : Populating the list of states dynamically from the data in table
 
 ---
 
