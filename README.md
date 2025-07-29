@@ -93,8 +93,8 @@ FastAPI automatically generates documentation:
 
 Main Endpoints:
 
-* `GET /powerplants/top?state=CA&limit=10`
-* `GET /powerplants/top?limit=20`
+* `GET /powerplants/top?state=CA&limit=10` : Main API.
+* `GET /powerplants/top?limit=20` : Populating the list of states dynamically from the data in table
 
 ---
 
@@ -108,17 +108,18 @@ Main Endpoints:
 
 ## ⚙️ Docker & Volumes
 
-Clean everything:
+Clean everything: This script can be used to cleanslate the environment by cleaning all unused containers, images and volumes
 
 ```bash
 ./clean_uspowerplant.sh
+./clean_test.sh
 ```
 
 ---
 
 ## ☁️ Cloud Deployment (AWS)
 
-Terraform deployment coming soon!
+Terraform deployment coming soon! Can be done, but need More time
 
 Features:
 
@@ -163,9 +164,8 @@ USPowerPlant/
 * **Scalability**: Decoupled services via Docker
 * **DataIntegrity** : Defined unique constraint on state+plan_id+gen_id
 * **Resilience**: Health checks + retry logic
-* **Extensibility**: Easily plug in new data sources or filters
 * **Security**: Env-based secrets + role-based auth (future)
-* **Automation** : Defined the upload functionality to create the bucket and upload the sample file GEN23.csv, if not alredy presnet.
+* **Automation** : Defined the upload functionality to create the bucket and upload the sample file GEN23.csv, if not already presnet.
 
 ---
 
@@ -191,4 +191,5 @@ Used OpenAI's ChatGPT to:
 * Debug Docker-related issues
 * Debug Env Related Issues
 * React useState related stuff
+* Others
 
