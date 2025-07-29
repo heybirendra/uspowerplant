@@ -1,12 +1,14 @@
 services:
   postgres:
     image: postgres:15
+    env_file: .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:5432"
     volumes:
       - uspowerplant_pgdata:/var/lib/postgresql/data
 #      - ./ingestor/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -22,6 +24,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ingestor
+    env_file: .env
     depends_on:
       postgres:
         condition: service_healthy

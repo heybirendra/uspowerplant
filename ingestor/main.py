@@ -7,6 +7,7 @@ from config import *
 from ddl.ddl import *
 import boto3
 
+
 s3client = boto3.client(
     "s3",
     aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
@@ -27,6 +28,6 @@ def init(engine) :
     ensure_default_file_exist(s3client, S3_BUCKET, DEFAULT_FILE_NAME,DEFAULT_FILE_PATH)
 
 if __name__ == "__main__":
-    engine = create_engine(os.getenv("DB_CON_URL"))
+    engine = create_engine(DATABASE_URL)
     init(engine)
     ingest(s3client, engine)
