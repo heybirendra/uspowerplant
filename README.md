@@ -122,9 +122,22 @@ Clean everything: This script can be used to cleanslate the environment by clean
 
 ---
 
-## ☁️ Cloud Deployment (AWS)
 
-Terraform deployment coming soon! Can be done, but need More time
+## 🧪 Testing
+
+The USPowerPlant solution has been successfully tested on two different macOS machines. This helped verify consistent behavior across different hardware and system configurations.
+
+Testing covered:
+
+- Docker Compose setup and orchestration of all services
+- Data ingestion and API responses
+- Frontend UI functionality and responsiveness
+
+This ensures the solution is stable and reliable for similar environments.
+
+---
+
+## ☁️ Cloud Deployment (AWS) - Coming soon. Need some more time.
 
 Features:
 
@@ -135,17 +148,11 @@ Features:
 
 ---
 
-## 🔐 Authentication (Optional)
+## 🔐 Authentication (Optional) 
 
 * Token-based auth for API endpoints
 * Protect ingestion and analytics routes
 
----
-
-## 📊 Monitoring (Optional Coming Soon)
-
-* Integrate with Prometheus + Grafana
-* Log collection with Loki or CloudWatch (for AWS)
 
 ---
 
@@ -166,11 +173,11 @@ USPowerPlant/
 
 ## 🧠 Non-functional Considerations
 
-* **Scalability**: Decoupled services via Docker
-* **DataIntegrity** : Defined unique constraint on state+plan_id+gen_id
-* **Resilience**: Health checks + retry logic
-* **Security**: Env-based secrets + role-based auth (future)
-* **Automation** : Defined the upload functionality to create the bucket and upload the sample file GEN23.csv, if not already presnet.
+* **Scalability**: Decoupled entire solution in 3 seperate services via Docker
+* **DataIntegrity** : Defined unique constraint on state+plan_id+gen_id to ensure data deduplicity.
+* **Resilience**: Health checks + retry logic to ensure the health of postres is up before depenedent services can start using it.
+* **Security**: Env-based secrets + role-based auth (future) : Kept a single place to keep the vars used by the services to maintain single source of truth
+* **Automation** : Also, Defined the file upload functionality to create the bucket and upload the sample file GEN23.csv, if the bucket and/or file not already presnet.
 
 ---
 
@@ -183,7 +190,6 @@ USPowerPlant/
 | DB          | PostgreSQL     | Reliable, scalable relational DB with strong SQL support and extensibility. Good for fixed schmea data solution storage and reads |
 | Storage     | S3             | Industry standard object storage. Part of AWS ecosystem. Fairly aware of this.
 | Container   | Docker Compose | Simplifies multi-container orchestration locally and in production | Easy to test and run on any system without any critical configuraiton needs.
-
 
 
 ---
