@@ -6,14 +6,13 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_HOST: ${POSTGRES_HOST}
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "5432:5432"
     volumes:
       - uspowerplant_pgdata:/var/lib/postgresql/data
 #      - ./ingestor/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U aiq -d powergen" ]
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -37,8 +36,6 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     env_file: .env
-#    environment:
-#      - DATABASE_URL=postgresql://aiq:aiq@postgres:5432/powerplantsdb
     depends_on:
       postgres:
         condition: service_healthy
@@ -46,17 +43,21 @@ services:
       - "8000:8000"
     networks:
       - app-network
-#
-#  frontend:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.frontend
-#    ports:
-#      - "3000:80"
-#    depends_on:
-#      - backend
-#    networks:2
-#      - app-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        - REACT_APP_API_URL=${REACT_APP_API_URL}
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    env_file:
+      - .env
 
 #  pgadmin:
 #    image: dpage/pgadmin4

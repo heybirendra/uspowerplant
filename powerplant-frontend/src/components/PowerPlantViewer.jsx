@@ -30,31 +30,6 @@ export default function PowerPlantViewer() {
     }
   }, [selectedState, limit]);
 
-//   const fetchPlants = async () => {
-//     if (!selectedState) {
-//       setPlants([]);
-//       return;
-//     }
-//     setLoading(true);
-//     setError(null);
-//     try {
-//       const response = await fetch(`pp/powerplants?state=${selectedState}&limit=${limit}`);
-//       if (!response.ok) throw new Error('Failed to fetch');
-//       const data = await response.json();
-//       setPlants(data);
-//     } catch (err) {
-//       setError(err.message);
-//     }
-//     setLoading(false);
-//   };
-//
-//
-//
-//
-//   // Fetch whenever selectedState or limit changes
-//   useEffect(() => {
-//     fetchPlants();
-//   }, [selectedState, limit]);
 
   return (
     <div style={{ maxWidth: 800, margin: 'auto', padding: 20 }}>
