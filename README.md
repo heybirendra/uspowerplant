@@ -6,7 +6,7 @@ A cloud-ready, Dockerized, full-stack application to ingest, transform, store, a
 
 ## 🔧 Features
 
-* Ingests EPA-formatted CSV files from S3-compatible storage (MinIO, AWS S3)
+* Ingests EPA-formatted CSV files from S3-compatible storage (AWS S3).
 * Cleans, normalizes, and stores data in PostgreSQL
 * Exposes RESTful APIs via FastAPI
 * Interactive React frontend to explore top N power plants by net generation per U.S. state
@@ -19,7 +19,7 @@ A cloud-ready, Dockerized, full-stack application to ingest, transform, store, a
 
 ### 🔹 Logical View
 
-* **Ingestor**: Extracts & loads CSVs to PostgreSQL
+* **Ingestor**: Extracts & loads CSVs to PostgreSQL with relevant fields. Also checks if the bucket is not present, creates the bucket and upload the file GEN23.csv
 * **Backend API**: FastAPI-based service to query the database
 * **Frontend**: React app that visualizes top N power plants by state
 * **Database**: PostgreSQL
@@ -51,6 +51,7 @@ User --> Frontend (React)
 
 * Docker + Docker Compose
 * Git
+* S3 Bucket + File Uploaded with GEN23.csv schema file. This file was extracted from the parent excel file which was downloaded
 
 ### Clone the Repository
 
