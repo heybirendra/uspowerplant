@@ -135,7 +135,7 @@ Features:
 
 ---
 
-## 📊 Monitoring (Optional)
+## 📊 Monitoring (Optional Coming Soon)
 
 * Integrate with Prometheus + Grafana
 * Log collection with Loki or CloudWatch (for AWS)
@@ -160,9 +160,11 @@ USPowerPlant/
 ## 🧠 Non-functional Considerations
 
 * **Scalability**: Decoupled services via Docker
+* **DataIntegrity** : Defined unique constraint on state+plan_id+gen_id
 * **Resilience**: Health checks + retry logic
 * **Extensibility**: Easily plug in new data sources or filters
 * **Security**: Env-based secrets + role-based auth (future)
+* **Automation** : Defined the upload functionality to create the bucket and upload the sample file GEN23.csv, if not alredy presnet.
 
 ---
 
@@ -173,9 +175,9 @@ USPowerPlant/
 | UI          | React          |
 | API         | FastAPI        |
 | DB          | PostgreSQL     |
-| Storage     | S3/MinIO       |
+| Storage     | S3             |
 | Container   | Docker Compose |
-| Infra (Opt) | Terraform      |
+| Infra (Opt) | Terraform (Pending)     |
 
 ---
 
@@ -183,8 +185,9 @@ USPowerPlant/
 
 Used OpenAI's ChatGPT to:
 
-* Draft architecture
 * Suggest healthcheck logic
 * Structure documentation
 * Debug Docker-related issues
+* Debug Env Related Issues
+* React useState related stuff
 
