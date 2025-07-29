@@ -11,7 +11,6 @@ A cloud-ready, Dockerized, full-stack application to ingest, transform, store, a
 * Exposes RESTful APIs via FastAPI
 * Interactive React frontend to explore top N power plants by net generation per U.S. state
 * Fully containerized with Docker Compose
-* Optional: Cloud-ready Terraform deployment on AWS
 
 ---
 
@@ -34,7 +33,7 @@ User --> Frontend (React)
      Backend API (FastAPI) <---> PostgreSQL
          |
          v
-     Object Storage (S3/MinIO) --> Ingestor
+     Object Storage (S3) --> Ingestor
 ```
 
 ### 🔹 Infrastructure
@@ -122,7 +121,6 @@ Clean everything: This script can be used to cleanslate the environment by clean
 
 ---
 
-
 ## 🧪 Testing
 
 The USPowerPlant solution has been successfully tested on two different macOS machines. This helped verify consistent behavior across different hardware and system configurations.
@@ -148,11 +146,9 @@ Features:
 
 ---
 
-## 🔐 Authentication (Optional) 
+## 🔐 Authentication - Coming soon. Need some more time. 
 
 * Token-based auth for API endpoints
-* Protect ingestion and analytics routes
-
 
 ---
 
@@ -178,8 +174,16 @@ USPowerPlant/
 * **Resilience**: Health checks + retry logic to ensure the health of postres is up before depenedent services can start using it.
 * **Security**: Env-based secrets + role-based auth (future) : Kept a single place to keep the vars used by the services to maintain single source of truth
 * **Automation** : Also, Defined the file upload functionality to create the bucket and upload the sample file GEN23.csv, if the bucket and/or file not already presnet.
+* **
 
----
+## 🧠 Further Improvements whcih can be done ; 
+
+* **Poll or Event Based Ingestion**: We could think of establishing a push or poll mechanism at S3, so that any new comign file can trigger the ingestor.
+* **Endpoing Caching**: Good to have the caching implemented, over the state endpoint. Also over the netGeneration endpoint based key as STATE.
+* **Table Designs** : In the table uploaded_files, could have created another column : total_ingested_row to have have a clear info of no of rows ingested against the file.
+* **UI Page** : Could have been more fancy with header and footer componenets. Also could have given the option/control to trigger the data ingest feature from UI and also the page to view the data ingest process results joining from both tables.
+* **Cloud Deployment using Terraform**: This would have been cherry over the cake, but need some more to do the same.
+  
 
 ## ✅ Tech Stack
 
